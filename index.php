@@ -1,26 +1,53 @@
 <?php
-if($_GET){
-    $cityname = $_GET['city'];
-    $cityname = strtolower($cityname);
-    $cityname = ucfirst($cityname);
-    $city = str_replace(' ','-',$cityname);
-    $mainpage = file_get_contents("https://completewebdevelopercourse.com/locations/$city");
-    if($mainpage == FALSE)
-    {
-        $finalpart ='<div class="alert alert-danger" role="alert">'."The city could not be found.</div>";
-    }
-    else
-    {
-    $firstpage = explode('</span></span></span></p>',$mainpage);
-    $secondpage = explode('<span class="read-more-content"> <span class="phrase">',$firstpage[0]);
-    $finalpart ='<div class="alert alert-success" role="alert">'.$cityname." weather forecast: ".$secondpage[1]."</div>";
-    }
     
-}
-else{
-    $finalpart ='<div class="alert alert-danger" role="alert">'."The city could not be found.</div>";
-}
+    $weather = "";
+    $error = "";
+    
+    if (array_key_exists('city', $_GET)) {
+        
+        $city = str_replace(' ', '', $_GET['city']);
+        
+        $file_headers = @get_headers("https://completewebdevelopercourse.com/locations/".$city);
+        
+        
+        if($file_headers[0] == 'HTTP/1.1 404 Not Found') {
+    
+            $error = "That city could not be found.";
+
+        } else {
+        
+            $forecastPage = file_get_contents("https://completewebdevelopercourse.com/locations/".$city);
+        
+        $pageArray = explode('3 Day Weather Forecast Summary:</b><span class="read-more-small"><span class="read-more-content"> <span class="phrase">', $forecastPage);
+            
+        if (sizeof($pageArray) > 1) {
+        
+                $secondPageArray = explode('</span></span></span>', $pageArray[1]);
+            
+                if (sizeof($secondPageArray) > 1) {
+
+                    $weather = $secondPageArray[0];
+                    
+                } else {
+                    
+                    $error = "That city could not be found.";
+                    
+                }
+            
+            } else {
+            
+                $error = "That city could not be found.";
+            
+            }
+        
+        }
+        
+    }
+
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,7 +63,7 @@ else{
       <style type="text/css">
       
       html { 
-          background: url(background.png) no-repeat center center fixed; 
+          background: url(background.jpeg) no-repeat center center fixed; 
           -webkit-background-size: cover;
           -moz-background-size: cover;
           -o-background-size: cover;
@@ -52,7 +79,7 @@ else{
           .container {
               
               text-align: center;
-              margin-top: 110px;
+              margin-top: 100px;
               width: 450px;
               
           }
@@ -80,20 +107,44 @@ else{
           
           
           
-          <form>
+          <form
   <fieldset class="form-group">
-    <label for="city">Enter the name of a city/Country.</label>
-    <input type="text" class="form-control" name="city" id="city" placeholder="Eg. London, Tokyo">
-      </fieldset>
+    <label for="city">Enter the name of a city.</label>
+    <input type="text" class="form-control" name="city" id="city" placeholder="Eg. London, Delhi" value = "<?php 
+																										   
+																										   if (array_key_exists('city', $_GET)) {
+																										   
+																										   echo $_GET['city']; 
+																										   
+																										   }
+																										   
+																										   ?>">
+  </fieldset>
+  
   <button type="submit" class="btn btn-primary">Submit</button>
-              <p><? echo $finalpart ?></p>
 </form>
+      
+          <div id="weather"><?php 
+              
+              if ($weather) {
+                  
+                  echo '<div class="alert alert-success" role="alert">
+  '.$weather.'
+</div>';
+                  
+              } else if ($error) {
+                  
+                  echo '<div class="alert alert-danger" role="alert">
+  '.$error.'
+</div>';
+                  
+              }
+              
+              ?></div>
       </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
-    </script>
+
     <!-- jQuery first, then Bootstrap JS. -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
-</body>
+  </body>
 </html>
