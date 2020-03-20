@@ -7,10 +7,7 @@
         $city = str_replace(' ', '', $_GET['city']);
         
         $file_headers = @get_headers("https://completewebdevelopercourse.com/locations/".$city);
-        
-        
         if($file_headers[0] == 'HTTP/1.1 404 Not Found') {
-    
             $error = "That city could not be found.";
 
         } else {
