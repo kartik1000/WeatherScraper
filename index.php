@@ -6,6 +6,9 @@
         
         $city = str_replace(' ', '', $_GET['city']);
         
+	    
+	    
+	    
         $file_headers = @get_headers("https://completewebdevelopercourse.com/locations/".$city);
         
         
@@ -106,6 +109,9 @@
           
           
           
+	      
+	      
+	      
           <form
   <fieldset class="form-group">
     <label for="city">Enter the name of a city.</label>
