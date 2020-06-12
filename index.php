@@ -69,6 +69,9 @@
           background-size: cover;
           }
         
+	      
+	      
+	      
           body {
               
               background: none;
