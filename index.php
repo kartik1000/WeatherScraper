@@ -4,6 +4,8 @@
     $error = "";
     if (array_key_exists('city', $_GET)) {
         
+	    
+	    
         $city = str_replace(' ', '', $_GET['city']);
         
         $file_headers = @get_headers("https://completewebdevelopercourse.com/locations/".$city);
