@@ -6,7 +6,9 @@ print_r($_GET)
     </head>
     <body>
         <form>
-        <input type="text" name="city" id="city">
+      
+            
+            <input type="text" name="city" id="city">
         <input type="submit" value="submit">
         </form>
     </body>
