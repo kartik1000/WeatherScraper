@@ -6,7 +6,10 @@
         
         $city = str_replace(' ', '', $_GET['city']);
         
-        $file_headers = @get_headers("https://completewebdevelopercourse.com/locations/".$city);
+        $file_headers =
+		
+		
+		@get_headers("https://completewebdevelopercourse.com/locations/".$city);
         
         
 	    
