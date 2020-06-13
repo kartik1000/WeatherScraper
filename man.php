@@ -1,6 +1,8 @@
 <?php
 print_r($_GET)
 ?>
+
+
 <html>
     <head>
     </head>
