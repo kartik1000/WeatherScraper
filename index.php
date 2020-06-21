@@ -1,5 +1,8 @@
 <?php
     
+
+
+
     $weather = "";
     $error = "";
     if (array_key_exists('city', $_GET)) {
