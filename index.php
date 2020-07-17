@@ -113,7 +113,10 @@
     <label for="city">Enter the name of a city.</label>
     <input type="text" class="form-control" name="city" id="city" placeholder="Eg. London, Delhi" value = "<?php 
 																										   
-																										   if (array_key_exists('city', $_GET)) {
+		
+													   
+													   
+													   if (array_key_exists('city', $_GET)) {
 																										   
 																										   echo $_GET['city']; 
 																										   
