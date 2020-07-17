@@ -34,6 +34,8 @@
                     $error = "That city could not be found.";
                     
                 }
+		
+		
             
             } else {
             
