@@ -116,7 +116,9 @@
 																										   if (array_key_exists('city', $_GET)) {
 																										   
 																										   echo $_GET['city']; 
-																										   
+				
+				
+				
 																										   }
 																										   
 																										   ?>">
