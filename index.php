@@ -119,7 +119,8 @@
 																										   
 																										   echo $_GET['city']; 
 																										   
-																										   }
+		
+		
 																										   
 																										   ?>">
   </fieldset>
