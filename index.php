@@ -3,6 +3,8 @@
     $weather = "";
     $error = "";
     if (array_key_exists('city', $_GET)) {
+	    
+	    
         
         $city = str_replace(' ', '', $_GET['city']);
         
