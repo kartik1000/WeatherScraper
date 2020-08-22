@@ -27,6 +27,7 @@
 	    
 	    
 	    
+	    
         $file_headers = @get_headers("https://completewebdevelopercourse.com/locations/".$city);
         
         
