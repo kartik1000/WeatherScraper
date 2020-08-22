@@ -6,14 +6,7 @@
         
         $city = str_replace(' ', '', $_GET['city']);
         
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
+	 
 	    
 	    
 	    
